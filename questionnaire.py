@@ -11,13 +11,12 @@ fname = "questionnaire.txt"
 
 ## Texts for the individual questionnaire items
 texts = ["Ease of use",
-         "Fluidity"]
+         "Fluidity", 
+         "Ease of learning"]
 
 ## Labels on the left and right sides of the scale
-left_labels = ["Strongly Disagree", "Strongly Disagree"]
-right_labels = ["Strongly Agree", "Strongly Agree"]
-# left_labels = ["Very Low", "Very Low", "Very Low", "Perfect", "Very Low", "Very Low"]
-# right_labels = ["Very High", "Very High", "Very High", "Failure", "Very High", "Very High"]
+left_labels = ["Strongly Disagree", "Very Low", "Very Unlikely", "Perfect"]
+right_labels = ["Strongly Agree", "Very High", "Very Likely", "Failure"]
 
 ## Labels of the Conditions to be chosen from
 conditions = ["pop", "pull", "auto"]
