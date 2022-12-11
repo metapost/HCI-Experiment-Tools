@@ -13,3 +13,4 @@ The test can be run by `python3 nasa-tlx.py`. The experiment and condition label
 
 ## Screenshot
 ![Screenshot](screenshot.png)
+![Screenshot-v1.1](screenshot-v1.1.png)
