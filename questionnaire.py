@@ -1,38 +1,23 @@
-# Modified by hapeng.wang@gmail.com
-# v1.2, 20221211, minor improvement.
-# v1.1, 20221211, added block, check file exists or not, added button of exit.
-# v1.0, 20221210
+# Created by hapeng.wang@gmail.com
+# v1.0, 20221211
 
 # You MUST customize the "header" info before using the scale.
 
-#!/usr/bin/python3
-
-## install: pip3 install appjar
 import os
 from appJar import gui
 
 ## data file.
-fname = "nasa-rawtlx-results.txt"
-
+fname = "questionnaire.txt"
 
 ## Texts for the individual questionnaire items
-#texts = ["Mental Demand    -    How mentally demanding was the task?",
-         #"Physical Demand    -    How physically demanding was the task?",
-         # "Temporal Demand    -    How hurried or rushed was the pace of the task?",
-         # "Performance    -    How successful were you in accomplishing what you were asked to do?",
-         # "Effort    -    How hard did you have to work to accomplish your level of performance?",
-         #"Frustration    -    How insecure, discouraged, irritated, stressed and annoyed were you?"]
-
-texts = ["脑力需求    -    How mentally demanding was the task?",
-         "体力需求    -    How physically demanding was the task?",
-         # "时限需求    -    How hurried or rushed was the pace of the task?",
-         # "自我表现    -    How successful were you in accomplishing what you were asked to do?",
-         # "努力程度    -    How hard did you have to work to accomplish your level of performance?",
-         "受挫感    -    How insecure, discouraged, irritated, stressed and annoyed were you?"]
+texts = ["Ease of use",
+         "Fluidity"]
 
 ## Labels on the left and right sides of the scale
-left_labels = ["Very Low", "Very Low", "Very Low", "Perfect", "Very Low", "Very Low"]
-right_labels = ["Very High", "Veryfnamere", "Very High", "Very High"]
+left_labels = ["Strongly Disagree", "Strongly Disagree"]
+right_labels = ["Strongly Agree", "Strongly Agree"]
+# left_labels = ["Very Low", "Very Low", "Very Low", "Perfect", "Very Low", "Very Low"]
+# right_labels = ["Very High", "Very High", "Very High", "Failure", "Very High", "Very High"]
 
 ## Labels of the Conditions to be chosen from
 conditions = ["pop", "pull", "auto"]
@@ -49,7 +34,7 @@ blocks = ["0", "1", "2", "3"]
 def on_submit():
     if not os.path.exists(fname):
         # define header of log file.
-        header = '# ' + 'experiment ' + 'user ' + 'condition ' + 'block ' + 'mental ' + 'physical ' + 'frustration '
+        header = '# ' + 'experiment ' + 'user ' + 'condition ' + 'block ' + 'ease-of-use ' + 'fluid'
         file_handle = open(fname, "a")
         file_handle.write(header + '\n')
         file_handle.close()        
@@ -68,13 +53,12 @@ def on_submit():
     write_string += str(block)
 
     for i in range(len(texts)):
-        write_string += ' ' + str(app.getScale("q" + str(i)) * 5)
+        write_string += ' ' + str(app.getScale("q" + str(i)))
 
     file_handle.write(write_string + '\n')
     file_handle.close()
     
-    app.infoBox("RawTLX Input", "Input successfully.")
-    print("The results were written successfully.")
+    app.infoBox("Questionnaire Input", "Input successfully.")
 
 def on_exit():
     app.stop()
@@ -82,8 +66,8 @@ def on_exit():
 
 ## Main entry point
 app = gui()
-# app.showSplash("NASA RawTLX", fill='red', stripe='black', fg='white', font=44)
-app.setTitle("NASA-RawTLX")
+# app.showSplash("Questionnaire", fill='red', stripe='black', fg='white', font=44)
+app.setTitle("Questionnaire")
 app.setSize(1000, 700)
 app.setFont(size=16, weight="bold")
 
@@ -104,7 +88,7 @@ for i, entry in enumerate(texts):
     app.setSticky("w")
     app.addLabel("q" + str(i) + "_label_right", right_labels[i], 4*i + 1 + 3, 2)
 
-    app.setScaleRange("q" + str(i), 0, 20, 10)
+    app.setScaleRange("q" + str(i), 1, 5, 3)
     app.setScaleIncrement("q" + str(i), 1)
     app.showScaleIntervals("q" + str(i), 1)
     app.showScaleValue("q" + str(i), show=True)
@@ -118,4 +102,5 @@ app.addButton("Submit", on_submit, 4*len(texts) + 1 + 3, 1)
 app.addButton("Exit", on_exit, 4*len(texts) + 1 + 3, 3)
 
 app.go()
+
 
