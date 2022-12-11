@@ -7,24 +7,11 @@ import os
 import datetime
 from appJar import gui
 
-## data file.
-fname = "demographic.txt"
-
-## Texts for the individual questionnaire items
-texts = ["Ease of use",
-         "Fluidity", 
-         "Ease of learning"]
-
-## Labels on the left and right sides of the scale
-left_labels = ["Very Low", "Very Low", "Strongly Disagree", "Very Unlikely", "Perfect"]
-right_labels = ["Very High", "Very High", "Strongly Agree", "Very Likely", "Failure"]
+## Experiments to be chosen from
+experiments = ["1", "2", "3"]
 
 ## Labels of the Conditions to be chosen from
 conditions = ["pop", "pull", "auto"]
-
-## Experiments to be chosen from
-# experiments = ["Experiment 1", "Experiment 2"]
-experiments = ["2"]
 
 # block number
 blocks = ["0", "1", "2", "3"]
@@ -39,8 +26,8 @@ def checked(cb):
 ## Main entry point
 app = gui()
 app.showSplash("Procedure \n Guide and Track Experiment \n haipeng.wang at gmail", fill='red', stripe='black', fg='white', font=44)
-app.setTitle("Questionnaire")
-app.setSize(1000, 700)
+app.setTitle("Procedure")
+app.setSize(1100, 700)
 app.setFont(size=16, weight="bold")
 
 ## experiments basic settings
@@ -105,10 +92,11 @@ app.stopTab()
 app.startTab("3. Post-Experiment")
 app.addCheckBox("Turn on audio recorders.")
 app.addCheckBox("Interview:")
-app.addCheckBox("closed questions.", row="previous")
-app.addCheckBox("open questions.", row="previous")
-app.addCheckBox("Debrief", row="previous")
-app.addNamedCheckBox(name="Answer questions", title="answer-interview", row="previous")
+app.addCheckBox("closed questions.", row="previous", column=1)
+app.addCheckBox("open questions.", row="previous", column=2)
+app.addCheckBox("confirm.", row="previous", column=3)
+app.addCheckBox("Debrief")
+app.addNamedCheckBox(name="Answer questions", title="Answer Debrief", row="previous", column=1)
 app.addCheckBox("Maintain participants pool.")
 app.addCheckBox("Thank you, good bye!")
 app.stopTab()
