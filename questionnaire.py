@@ -10,13 +10,16 @@ from appJar import gui
 fname = "questionnaire.txt"
 
 ## Texts for the individual questionnaire items
-texts = ["Ease of use",
-         "Fluidity", 
-         "Ease of learning"]
+texts = ["易用性的程度",
+         "交互的流畅性"]
+
+# texts = ["Ease of use",
+#          "Fluidity", 
+#          "Ease of learning"]
 
 ## Labels on the left and right sides of the scale
-left_labels = ["Strongly Disagree", "Very Low", "Very Unlikely", "Perfect"]
-right_labels = ["Strongly Agree", "Very High", "Very Likely", "Failure"]
+left_labels = ["Very Low", "Very Low", "Strongly Disagree", "Very Unlikely", "Perfect"]
+right_labels = ["Very High", "Very High", "Strongly Agree", "Very Likely", "Failure"]
 
 ## Labels of the Conditions to be chosen from
 conditions = ["pop", "pull", "auto"]
