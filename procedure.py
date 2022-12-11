@@ -38,7 +38,7 @@ def checked(cb):
 
 ## Main entry point
 app = gui()
-# app.showSplash("Questionnaire", fill='red', stripe='black', fg='white', font=44)
+app.showSplash("Procedure \n Guide and Track Experiment \n haipeng.wang at gmail", fill='red', stripe='black', fg='white', font=44)
 app.setTitle("Questionnaire")
 app.setSize(1000, 700)
 app.setFont(size=16, weight="bold")
