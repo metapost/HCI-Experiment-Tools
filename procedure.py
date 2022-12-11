@@ -57,7 +57,6 @@ app.setFont(20)
 ## preparation
 app.startTab("0. Preparation")
 app.addCheckBox("Video recorder: 1 primary + 1 backup")
-app.addLabel(title="Video recorder: 1 primary + 1 backup", row="previous", column=1)
 app.addCheckBox("Audio recorder: 1 primary + 1 backup")
 app.addCheckBox("TLX + Usability Questionnaires")
 app.addCheckBox("Notification on Lab. door.")
