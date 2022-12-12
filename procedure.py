@@ -1,4 +1,5 @@
 # Created by hapeng.wang@gmail.com
+# v2.1, 20221212, minor improvement for preparation and intervew.
 # v2.0, 20221212, added log file.
 # v1.0, 20221212
 
@@ -50,6 +51,7 @@ app.setFont(20)
 
 ## preparation
 app.startTab("0. Preparation")
+app.addCheckBox("1 primary investigator; 2 assistants for video and interview respectively")
 app.addCheckBox("Video recorder: 1 primary + 1 backup")
 app.addCheckBox("Audio recorder: 1 primary + 1 backup")
 app.addCheckBox("TLX + Usability Questionnaires")
@@ -104,8 +106,9 @@ app.startTab("3. Post-Experiment")
 app.addCheckBox("Turn on audio recorders.")
 app.addCheckBox("Interview:")
 app.addCheckBox("closed questions.", row="previous", column=1)
-app.addCheckBox("open questions.", row="previous", column=2)
-app.addCheckBox("repeat and confirm.", row="previous", column=3) # repeat your understanding and confirm with users.
+app.addCheckBox("open questions.", column=1)
+app.addCheckBox("What features you like or dislike? and Why?", row="previous", column=2)
+app.addCheckBox("repeat and confirm.", column=1, colspan=2) # repeat your understanding and confirm with users.
 app.addCheckBox("Debrief")
 app.addNamedCheckBox(name="Answer questions", title="Answer Debrief", row="previous", column=1)
 app.addCheckBox("Maintain participants pool.")
