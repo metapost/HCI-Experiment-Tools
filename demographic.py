@@ -17,9 +17,6 @@ texts = ["易用性的程度",
 #          "Fluidity", 
 #          "Ease of learning"]
 
-## an unbiased question example.
-# How easy or difficult was it for you to...? [Very difficult, Difficult, Neutral, Easy, Very easy]
-
 ## Labels on the left and right sides of the scale
 left_labels = ["Very Low", "Very Low", "Strongly Disagree", "Very Unlikely", "Perfect"]
 right_labels = ["Very High", "Very High", "Strongly Agree", "Very Likely", "Failure"]
