@@ -1,4 +1,5 @@
-# Modified by hapeng.wang@gmail.com
+# Modified by haipeng.wang@gmail.com
+# v1.3, 20230216, minor improvement, remove the experiment variable.
 # v1.2, 20221211, minor improvement.
 # v1.1, 20221211, added block, check file exists or not, added button of exit.
 # v1.0, 20221210
@@ -32,14 +33,14 @@ texts = ["脑力需求    -    How mentally demanding was the task?",
 
 ## Labels on the left and right sides of the scale
 left_labels = ["Very Low", "Very Low", "Very Low", "Perfect", "Very Low", "Very Low"]
-right_labels = ["Very High", "Veryfnamere", "Very High", "Very High"]
+right_labels = ["Very High", "Very High", "Very High", "Very High"]
 
 ## Labels of the Conditions to be chosen from
 conditions = ["pop", "pull", "auto"]
 
 ## Experiments to be chosen from
 # experiments = ["Experiment 1", "Experiment 2"]
-experiments = ["2"]
+# experiments = ["2"]
 
 # block number
 blocks = ["0", "1", "2", "3"]
@@ -49,20 +50,18 @@ blocks = ["0", "1", "2", "3"]
 def on_submit():
     if not os.path.exists(fname):
         # define header of log file.
-        header = '# ' + 'experiment ' + 'user ' + 'condition ' + 'block ' + 'mental ' + 'physical ' + 'frustration '
+        header = '# ' + 'uid ' + 'condition ' + 'block ' + 'mental ' + 'physical ' + 'frustration '
         file_handle = open(fname, "a")
         file_handle.write(header + '\n')
         file_handle.close()        
         
-    experiment = app.getOptionBox("Experiment")
-    user_id = app.getSpinBox("User ID")
+        user_id = app.getSpinBox("User ID")
     condition = app.getOptionBox("Condition")
     block = app.getOptionBox("Block")
     
     file_handle = open(fname, "a")
 
     write_string = ''
-    write_string += str(experiment) + ' '
     write_string += str(user_id) + ' '
     write_string += str(condition) + ' '
     write_string += str(block)
@@ -87,11 +86,10 @@ app.setTitle("NASA-RawTLX")
 app.setSize(1000, 700)
 app.setFont(size=16, weight="bold")
 
-app.addLabelOptionBox("Experiment", experiments, 0, 0)
-app.addLabelSpinBoxRange("User ID", 1, 100, 0, 1)
+app.addLabelSpinBoxRange("User ID", 1, 100, 0, 0)
+app.addLabelOptionBox("Condition", conditions, 0, 1)
 app.addLabelOptionBox("Block", blocks, 0, 2)
-app.addLabelOptionBox("Condition", conditions, 0, 3)
-app.addHorizontalSeparator(2, 0, 4)
+app.addHorizontalSeparator(2, 0, 3)
 
 for i, entry in enumerate(texts):
     app.setSticky("we")

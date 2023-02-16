@@ -1,4 +1,4 @@
-# Created by hapeng.wang@gmail.com
+# Created by haipeng.wang@gmail.com
 # v1.0, 20221211
 
 # You MUST customize the "header" info before using the scale.

@@ -1,4 +1,5 @@
-# Created by hapeng.wang@gmail.com
+# Created by haipeng.wang@gmail.com
+# v3.0, 20230216, support changing the conditions during the pilot.
 # v2.1, 20221212, minor improvement for preparation and intervew.
 # v2.0, 20221212, added log file.
 # v1.0, 20221212
@@ -31,6 +32,15 @@ def checked(cb):
     file_handle.write(cb + ' | ' + str(datetime.datetime.now().strftime("%H:%M:%S")) + '\n')
     file_handle.close()
 
+def conditionChanged():
+    tmp_cond = app.getOptionBox("Condition")
+
+    file_handle = open(fname, "a")
+    file_handle.write('\n' + "condition: " + tmp_cond + '\n')
+    file_handle.close()
+    
+    app.clearAllCheckBoxes()
+
 ## Main entry point
 app = gui()
 # app.showSplash("Procedure \n Guide and Track Experiment \n haipeng.wang at gmail", fill='red', stripe='black', fg='white', font=44)
@@ -41,8 +51,12 @@ app.setFont(size=16, weight="bold")
 ## experiments basic settings
 app.addLabelOptionBox("Experiment", experiments, 0, 0)
 app.addLabelSpinBoxRange("User ID", 1, 100, 0, 1)
-app.addLabelOptionBox("Block", blocks, 0, 2)
-app.addLabelOptionBox("Condition", conditions, 0, 3)
+
+app.addLabelOptionBox("Condition", conditions, 0, 2)
+app.setOptionBoxChangeFunction("Condition", conditionChanged)
+app.setStartFunction(conditionChanged)
+
+app.addLabelOptionBox("Block", blocks, 0, 3)
 
 
 app.startTabbedFrame("TabbedFrame", colspan=4)
