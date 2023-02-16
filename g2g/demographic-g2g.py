@@ -13,7 +13,7 @@ import os
 from appJar import gui
 
 ## data filename.
-fname = "demographic.txt"
+fname = "demographic_g2g.txt"
 
 # texts = ["Ease of use",
 #          "Fluidity", 
@@ -23,7 +23,7 @@ fname = "demographic.txt"
 def on_submit():
     if not os.path.exists(fname):
         # define header of log file.
-        header = '# ' + 'uid ' + 'gender ' + 'age ' + 'sight ' + 'handedness ' + 'experience-display ' + 'experience-gesture ' + 'experience-silentSpeech'
+        header = '# ' + 'uid ' + 'gender ' + 'age ' + 'experience-display ' + 'experience-gesture ' + 'experience-cross-device'
         file_handle = open(fname, "a")
         file_handle.write(header + '\n')
         file_handle.close()        
@@ -36,11 +36,9 @@ def on_submit():
     write_string += str(user_id) + ' '
     write_string += app.getRadioButton("gender") + ' '
     write_string += str(int(app.getEntry("age"))) + ' '
-    write_string += app.getRadioButton("sight") + ' '
-    write_string += app.getRadioButton("handedness") + ' '
     write_string += app.getRadioButton("display") + ' '
     write_string += app.getRadioButton("gesture") + ' '
-    write_string += app.getRadioButton("silentSpeech")
+    write_string += app.getRadioButton("crossDevice")
     
     file_handle.write(write_string + '\n')
     file_handle.close()
@@ -74,17 +72,6 @@ app.addNumericEntry("age", row="previous", column=1)
 app.stopLabelFrame()
 
 ## Human Factors
-app.startLabelFrame("Human Factors", colspan=6)
-app.setSticky("w")
-app.addLabel("Your corrected sight: ", column=0)
-app.addRadioButton("sight", "good", row="previous", column=1)
-app.addRadioButton("sight", "good at distant of 5 meters", row="previous", column=2)
-
-app.addLabel("Your handedness: ", column=0)
-app.addRadioButton("handedness", "Right", row="previous", column=1)
-app.addRadioButton("handedness", "Left", row="previous", column=2)
-app.addRadioButton("handedness", "Both", row="previous", column=3)
-app.stopLabelFrame()
 
 ## prior experience 
 app.startLabelFrame("Prior Experience", colspan=6)
@@ -95,19 +82,19 @@ app.addRadioButton("display", "Monthly", row="previous", column=3)
 app.addRadioButton("display", "Yearly", row="previous", column=4)
 app.addRadioButton("display", "Never", row="previous", column=5)
 
-app.addLabel("Your prior experience with gesture interaction: ", column=0)
+app.addLabel("Your prior experience with Gesture Interaction: ", column=0)
 app.addRadioButton("gesture", "Daily", row="previous", column=1)
 app.addRadioButton("gesture", "Weekly", row="previous", column=2)
 app.addRadioButton("gesture", "Monthly", row="previous", column=3)
 app.addRadioButton("gesture", "Yearly", row="previous", column=4)
 app.addRadioButton("gesture", "Never", row="previous", column=5)
 
-app.addLabel("Your prior experience with silent speech interaction: ", column=0)
-app.addRadioButton("silentSpeech", "Daily", row="previous", column=1)
-app.addRadioButton("silentSpeech", "Weekly", row="previous", column=2)
-app.addRadioButton("silentSpeech", "Monthly", row="previous", column=3)
-app.addRadioButton("silentSpeech", "Yearly", row="previous", column=4)
-app.addRadioButton("silentSpeech", "Never", row="previous", column=5)
+app.addLabel("Your prior experience with Cross Device Interaction: ", column=0)
+app.addRadioButton("crossDevice", "Daily", row="previous", column=1)
+app.addRadioButton("crossDevice", "Weekly", row="previous", column=2)
+app.addRadioButton("crossDevice", "Monthly", row="previous", column=3)
+app.addRadioButton("crossDevice", "Yearly", row="previous", column=4)
+app.addRadioButton("crossDevice", "Never", row="previous", column=5)
 app.stopLabelFrame()
 
 app.setSticky("we")

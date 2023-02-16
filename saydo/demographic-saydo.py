@@ -13,7 +13,7 @@ import os
 from appJar import gui
 
 ## data filename.
-fname = "demographic.txt"
+fname = "demographic_saydo.txt"
 
 # texts = ["Ease of use",
 #          "Fluidity", 
