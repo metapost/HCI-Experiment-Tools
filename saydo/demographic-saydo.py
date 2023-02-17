@@ -23,7 +23,7 @@ fname = "demographic_saydo.txt"
 def on_submit():
     if not os.path.exists(fname):
         # define header of log file.
-        header = '# ' + 'uid ' + 'gender ' + 'age ' + 'sight ' + 'handedness ' + 'experience-display ' + 'experience-gesture ' + 'experience-silentSpeech'
+        header = '# ' + 'uid ' + 'gender ' + 'age ' + 'sight ' + 'handedness ' + 'experience-display ' + 'experience-gesture ' + 'experience-speech' + 'experience-silentSpeech'
         file_handle = open(fname, "a")
         file_handle.write(header + '\n')
         file_handle.close()        
@@ -95,14 +95,21 @@ app.addRadioButton("display", "Monthly", row="previous", column=3)
 app.addRadioButton("display", "Yearly", row="previous", column=4)
 app.addRadioButton("display", "Never", row="previous", column=5)
 
-app.addLabel("Your prior experience with gesture interaction: ", column=0)
+app.addLabel("Your prior experience with Gesture Interaction: ", column=0)
 app.addRadioButton("gesture", "Daily", row="previous", column=1)
 app.addRadioButton("gesture", "Weekly", row="previous", column=2)
 app.addRadioButton("gesture", "Monthly", row="previous", column=3)
 app.addRadioButton("gesture", "Yearly", row="previous", column=4)
 app.addRadioButton("gesture", "Never", row="previous", column=5)
 
-app.addLabel("Your prior experience with silent speech interaction: ", column=0)
+app.addLabel("Your prior experience with Speech Interaction: ", column=0)
+app.addRadioButton("speech", "Daily", row="previous", column=1)
+app.addRadioButton("speech", "Weekly", row="previous", column=2)
+app.addRadioButton("speech", "Monthly", row="previous", column=3)
+app.addRadioButton("speech", "Yearly", row="previous", column=4)
+app.addRadioButton("speech", "Never", row="previous", column=5)
+
+app.addLabel("Your prior experience with Silent Speech Interaction: ", column=0)
 app.addRadioButton("silentSpeech", "Daily", row="previous", column=1)
 app.addRadioButton("silentSpeech", "Weekly", row="previous", column=2)
 app.addRadioButton("silentSpeech", "Monthly", row="previous", column=3)

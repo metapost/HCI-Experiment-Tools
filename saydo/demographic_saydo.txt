@@ -1,2 +1,0 @@
-# uid gender age sight handedness experience-display experience-gesture experience-silentSpeech
-13 Male 33 good Left Daily Daily Daily
