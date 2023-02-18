@@ -1,4 +1,8 @@
+# app version
+# v1.1, fix bug, fix the missing of speech value. 20230218
+
 # Created by haipeng.wang@gmail.com
+# template version
 # v1.1, 20230215, remove experiment and condition variables.
 # v1.0, 20221212, full functions finshed.
 # v0.1, 20221212
@@ -23,7 +27,7 @@ fname = "demographic_saydo.txt"
 def on_submit():
     if not os.path.exists(fname):
         # define header of log file.
-        header = '# ' + 'uid ' + 'gender ' + 'age ' + 'sight ' + 'handedness ' + 'experience-display ' + 'experience-gesture ' + 'experience-speech' + 'experience-silentSpeech'
+        header = '# ' + 'uid ' + 'gender ' + 'age ' + 'sight ' + 'handedness ' + 'experience-display ' + 'experience-gesture ' + 'experience-speech ' + 'experience-silentSpeech'
         file_handle = open(fname, "a")
         file_handle.write(header + '\n')
         file_handle.close()        
@@ -40,6 +44,7 @@ def on_submit():
     write_string += app.getRadioButton("handedness") + ' '
     write_string += app.getRadioButton("display") + ' '
     write_string += app.getRadioButton("gesture") + ' '
+    write_string += app.getRadioButton("speech") + ' '
     write_string += app.getRadioButton("silentSpeech")
     
     file_handle.write(write_string + '\n')

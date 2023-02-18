@@ -1,4 +1,8 @@
+# app version
+# v1.0, fix bug. 2023mmdd
+
 # Created by haipeng.wang@gmail.com
+# template version
 # v1.1, 20230215, remove experiment and condition variables.
 # v1.0, 20221212, full functions finshed.
 # v0.1, 20221212

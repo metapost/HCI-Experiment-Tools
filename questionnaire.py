@@ -1,4 +1,8 @@
+# app version
+# v1.1, fix bug, fix the missing of speech value. 20230218
+
 # Created by haipeng.wang@gmail.com
+# template version
 # v1.0, 20221211
 
 # You MUST customize the "header" info before using the scale.

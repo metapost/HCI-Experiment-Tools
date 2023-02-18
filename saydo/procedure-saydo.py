@@ -1,4 +1,5 @@
 # Created by haipeng.wang@gmail.com
+# v3.1, 20230218, added a new tab about post-study check.
 # v3.0, 20230216, support changing the conditions during the pilot.
 # v2.1, 20221212, minor improvement for preparation and intervew.
 # v2.0, 20221212, added log file.
@@ -59,7 +60,7 @@ app.startTab("0. Preparation")
 app.addCheckBox("1 primary investigator; 2 assistants for video and interview respectively")
 app.addCheckBox("Video recorder: 1 primary + 1 backup")
 app.addCheckBox("Audio recorder: 1 primary + 1 backup")
-app.addCheckBox("TLX + Usability Questionnaires")
+app.addCheckBox("Explain TLX + Usability Questionnaires")
 app.addCheckBox("Notification on Lab. door.")
 app.stopTab()
 
@@ -118,6 +119,13 @@ app.addCheckBox("Debrief")
 app.addNamedCheckBox(name="Answer questions", title="Answer Debrief", row="previous", column=1)
 app.addCheckBox("Maintain participants pool.")
 app.addCheckBox("Thank you, good bye!")
+app.stopTab()
+
+# Post-study check
+app.startTab("4. Post-study check")
+app.addCheckBox("check TLX data, if it works correctly.")
+app.addCheckBox("check questionnaire data, if it works correctly.")
+app.addCheckBox("check study log data.")
 app.stopTab()
 
 app.stopTabbedFrame()

@@ -1,4 +1,8 @@
+# app version
+# v1.1, 20230218, using Chinese to label the scales.
+
 # Created by haipeng.wang@gmail.com
+# template version
 # v1.0, 20221211
 
 # You MUST customize the "header" and left and right labels set before using the scale.
@@ -26,8 +30,8 @@ texts = ["易用性的程度", # ease-of-use
 ## Labels on the left and right sides of the scale
 # left_labels = ["Very Low", "Very Low", "Strongly Disagree", "Very Unlikely", "Perfect"]
 # right_labels = ["Very High", "Very High", "Strongly Agree", "Very Likely", "Failure"]
-left_labels = ["Very Low", "Very Low", "Very Low", "Very Bad"]
-right_labels = ["Very High", "Very High", "Very High", "Very Good"]
+left_labels = ["难用", "不流畅", "难学", "Very Bad"]
+right_labels = ["易用", "流畅", "易学", "Very Good"]
 
 
 ## Labels of the Conditions to be chosen from

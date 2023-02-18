@@ -45,14 +45,14 @@ app.setFont(size=16, weight="bold")
 
 app.addLabelSpinBoxRange("User ID", 1, 100, row=0, column=0)
 
-app.addLabel("Which of the methods was preferred: ", row=app.getRow()+1, column=0)
+app.addLabel("Which of the methods was preferred: ", row=app.getRow(), column=0)
 app.addRadioButton("preferred", "Keyboard", row="previous", column=1)
 app.addRadioButton("preferred", "Speech", row="previous", column=2)
 app.addRadioButton("preferred", "SilentSpeech", row="previous", column=3)
 app.addRadioButton("preferred", "Gesture", row="previous", column=4)
 
 app.setSticky("we")
-app.addButton("Exit", func=on_exit, row=app.getRow()+1, column=0)
+app.addButton("Exit", func=on_exit, row=app.getRow(), column=0)
 app.addButton("Submit", func=on_submit, row="previous", column=2, colspan=3)
 
 
