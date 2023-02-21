@@ -7,7 +7,7 @@ import os
 from appJar import gui
 
 ## data file.
-fname = "questionnaire-2.2-g2g.txt"
+fname = "questionnaire-g2g-studyIII-2.2.txt"
 
 ## Called when the submit button is clicked
 def on_submit():

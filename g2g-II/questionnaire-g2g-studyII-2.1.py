@@ -1,25 +1,23 @@
-# app version
-# v1.0, 20230218.
-#
 # Created by haipeng.wang@gmail.com
-# template version
+# v1.1, 20230221, added conditions.
 # v1.0, 20221211
 
-# You MUST customize the "header" and left and right labels set before using the scales.
+# You MUST customize the "header" and left and right labels set before using the scale.
 
 import os
 from appJar import gui
 
 ## data file.
-fname = "questionnaire-2.1-g2g.txt"
+fname = "questionnaire-g2gII-2.1.txt"
 
 ## Texts for the individual questionnaire items
 # texts = ["易用性的程度",
 #         "交互的流畅性"]
 
 texts = ["Ease of use individually(个人使用的易用性)",
-         "Ease of collaboration with others(多人协作的易用性)",
-         "Privacy concerns(隐私性)"]
+         "Ease of collaboration with others(多人协作的易用性)"]
+         # "Ease of access", # for studyIII
+         # "Privacy concerns"]
 
 ## an unbiased question example.
 # How easy or difficult was it for you to...? [Very difficult, Difficult, Neutral, Easy, Very easy]
@@ -27,12 +25,13 @@ texts = ["Ease of use individually(个人使用的易用性)",
 ## Labels on the left and right sides of the scale
 # left_labels = ["Very Low", "Very Low", "Strongly Disagree", "Very Unlikely", "Perfect"]
 # right_labels = ["Very High", "Very High", "Strongly Agree", "Very Likely", "Failure"]
-left_labels = ["困难", "困难", "Very Bad"]
-right_labels = ["容易", "容易", "Very Good"]
+left_labels = ["困难", "困难", "Very Low", "Very Bad"]
+right_labels = ["容易", "容易", "Very High", "Very Good"]
 
 
 ## Labels of the Conditions to be chosen from
 # conditions = ["pop", "pull", "auto"]
+conditions = ["seated-table-hori", "seated-table-vert", "seated-hold-vert", "standing-hold-vert", "walking-hold-vert"]
 
 
 ## Experiments to be chosen from
@@ -48,17 +47,19 @@ def on_submit():
     if not os.path.exists(fname):
         # define header of log file.
         # header = '# ' + 'uid ' + 'condition ' + 'block ' + 'ease-of-use ' + 'ease-of-collaboration ' + 'ease-of-access ' + 'privacy-concerns'
-        header = '# ' + 'uid ' + 'ease-of-use ' + 'ease-of-collaboration ' + 'privacy-concerns'
+        header = '# ' + 'uid ' + 'condition ' + 'ease-of-use ' + 'ease-of-collaboration'
         file_handle = open(fname, "a")
         file_handle.write(header + '\n')
         file_handle.close()        
         
     user_id = app.getSpinBox("User ID")
+    condition = app.getOptionBox("Condition")
     
     file_handle = open(fname, "a")
 
     write_string = ''
-    write_string += str(user_id)
+    write_string += str(user_id) + ' '
+    write_string += str(condition)
 
     for i in range(len(texts)):
         write_string += ' ' + str(app.getScale("q" + str(i)))
@@ -80,6 +81,7 @@ app.setSize(1000, 700)
 app.setFont(size=16, weight="bold")
 
 app.addLabelSpinBoxRange("User ID", 1, 100, 0, 0)
+app.addLabelOptionBox("Condition", conditions, 0, 1)
 app.addHorizontalSeparator(2, 0, 3)
 
 for i, entry in enumerate(texts):
