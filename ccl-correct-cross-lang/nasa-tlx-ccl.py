@@ -1,5 +1,5 @@
 # App version
-# v0.1, MM DD, YYYY
+# v0.1, Feb. 28, 2023
 
 # Template version
 # Modified by haipeng.wang@gmail.com
@@ -19,7 +19,7 @@ import os
 from appJar import gui
 
 ## data file.
-fname = "nasa-rawtlx-results.txt"
+fname = "nasa-rawtlx-results-ccl.txt"
 
 
 ## Texts for the individual questionnaire items
@@ -31,10 +31,10 @@ fname = "nasa-rawtlx-results.txt"
          #"Frustration    -    How insecure, discouraged, irritated, stressed and annoyed were you?"]
 
 texts = ["脑力需求    -    How mentally demanding was the task?",
-         "体力需求    -    How physically demanding was the task?",
+         # "体力需求    -    How physically demanding was the task?",
          # "时限需求    -    How hurried or rushed was the pace of the task?",
          # "自我表现    -    How successful were you in accomplishing what you were asked to do?",
-         # "努力程度    -    How hard did you have to work to accomplish your level of performance?",
+         "努力程度    -    How hard did you have to work to accomplish your level of performance?",
          "受挫感    -    How insecure, discouraged, irritated, stressed and annoyed were you?"]
 
 ## Labels on the left and right sides of the scale
@@ -42,7 +42,7 @@ left_labels = ["Very Low", "Very Low", "Very Low", "Perfect", "Very Low", "Very 
 right_labels = ["Very High", "Very High", "Very High", "Failure", "Very High", "Very High"]
 
 ## Labels of the Conditions to be chosen from
-conditions = ["pop", "pull", "auto"]
+conditions = ["Cross-Language", "Auto"]
 
 ## Experiments to be chosen from
 # experiments = ["Experiment 1", "Experiment 2"]
@@ -57,7 +57,7 @@ blocks = ["0", "3"]
 def on_submit():
     if not os.path.exists(fname):
         # define header of log file.
-        header = 'uid ' + 'condition ' + 'block ' + 'mental ' + 'physical ' + 'frustration'
+        header = 'uid ' + 'condition ' + 'block ' + 'mental ' + 'effort ' + 'frustration'
         file_handle = open(fname, "a")
         file_handle.write(header + '\n')
         file_handle.close()        

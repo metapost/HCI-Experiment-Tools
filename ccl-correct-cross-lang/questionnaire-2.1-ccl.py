@@ -9,16 +9,16 @@ import os
 from appJar import gui
 
 ## data file.
-fname = "questionnaire-g2gII-2.1.txt"
+fname = "questionnaire-2.1-ccl.txt"
 
 ## Texts for the individual questionnaire items
 # texts = ["易用性的程度",
 #         "交互的流畅性"]
 
-texts = ["Ease of use individually(个人使用的易用性)",
+texts = ["Ease of use(易用性)",
+         "Ease of learning(易学性)",
          "Perceived accuracy(感受到的准确度)",
-         "Perceived flexibility(感受到的灵活度)",
-         "Ease of collaboration with others(多人协作的易用性)"]
+         "Perceived speed(感受到的交互速度)"]         
          # "Ease of access", # for studyIII
          # "Privacy concerns"]
 
@@ -28,13 +28,12 @@ texts = ["Ease of use individually(个人使用的易用性)",
 ## Labels on the left and right sides of the scale
 # left_labels = ["Very Low", "Very Low", "Strongly Disagree", "Very Unlikely", "Perfect"]
 # right_labels = ["Very High", "Very High", "Strongly Agree", "Very Likely", "Failure"]
-left_labels = ["非常困难", "非常不准确", "非常不灵活", "非常困难", "Very Low", "Very Bad"]
-right_labels = ["非常容易", "非常准确", "非常灵活", "非常容易", "Very High", "Very Good"]
+left_labels = ["非常困难", "非常困难", "非常不准确", "非常慢", "非常困难", "Very Low", "Very Bad"]
+right_labels = ["非常容易", "非常容易", "非常准确", "非常快", "非常容易", "Very High", "Very Good"]
 
 
 ## Labels of the Conditions to be chosen from
-# conditions = ["pop", "pull", "auto"]
-conditions = ["seated-table-hori", "seated-table-vert", "seated-hold-vert", "standing-hold-vert", "walking-hold-vert"]
+conditions = ["Automatic", "Cross Language"]
 
 
 ## Experiments to be chosen from
@@ -49,8 +48,7 @@ conditions = ["seated-table-hori", "seated-table-vert", "seated-hold-vert", "sta
 def on_submit():
     if not os.path.exists(fname):
         # define header of log file.
-        # header = '# ' + 'uid ' + 'condition ' + 'block ' + 'ease-of-use ' + 'percevied-accuracy ' + 'percevied-flexibility ' + 'ease-of-collaboration ' + 'ease-of-access ' + 'privacy-concerns'
-        header = '# ' + 'uid ' + 'condition ' + 'ease-of-use ' + 'percevied-accuracy ' + 'percevied-flexibility ' + 'ease-of-collaboration'
+        header = 'uid ' + 'condition ' + 'ease-of-use ' + 'ease-of-leaning ' + 'percevied-accuracy ' + 'percevied-speed'
         file_handle = open(fname, "a")
         file_handle.write(header + '\n')
         file_handle.close()        
@@ -85,7 +83,7 @@ app.setFont(size=16, weight="bold")
 
 app.addLabelSpinBoxRange("User ID", 1, 100, 0, 0)
 app.addLabelOptionBox("Condition", conditions, 0, 1)
-app.addHorizontalSeparator(2, 0, 3)
+app.addHorizontalSeparator(2, 0, 4)
 
 for i, entry in enumerate(texts):
     app.setSticky("we")
@@ -98,7 +96,8 @@ for i, entry in enumerate(texts):
     app.setSticky("w")
     app.addLabel("q" + str(i) + "_label_right", right_labels[i], 4*i + 1 + 3, 2)
 
-    app.setScaleRange("q" + str(i), 1, 7, 4) # 7 scale range, 4 is default value.
+    # app.setScaleRange("q" + str(i), 1, 5, 4) # 7 scale range, 4 is default value.
+    app.setScaleRange("q" + str(i), 1, 5, 3) # 5 scale range, 3 is default value.
     app.setScaleIncrement("q" + str(i), 1)
     app.showScaleIntervals("q" + str(i), 1)
     app.showScaleValue("q" + str(i), show=True)
