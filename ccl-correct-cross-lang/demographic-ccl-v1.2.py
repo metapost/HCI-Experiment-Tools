@@ -1,4 +1,5 @@
 # app version
+# v1.2, fix bug, fix bug of sight. 20230302.
 # v1.1, fix bug, fix the missing of speech value. 20230218
 
 # Created by haipeng.wang@gmail.com
@@ -81,8 +82,8 @@ app.stopLabelFrame()
 app.startLabelFrame("Human Factors", colspan=6)
 app.setSticky("w")
 app.addLabel("Your corrected sight: ", column=0)
-app.addRadioButton("sight", "My eyesight is GOOD up to 5 meters.", row="previous", column=1)
-app.addRadioButton("sight", "My eyesight is BAD beyond 5 meters.", row="previous", column=2)
+app.addRadioButton("sight", "My eyesight is GOOD up to 5 meters (good < 5m).", row="previous", column=1)
+app.addRadioButton("sight", "My eyesight is BAD up to 5 meters (bad < 5m).", row="previous", column=2)
 
 app.addLabel("Your handedness: ", column=0)
 app.addRadioButton("handedness", "Right", row="previous", column=1)

@@ -1,11 +1,8 @@
-# App version
-# v0.1, Feb. 28, 2023
+# app version
+# v1.2, 20230302, all in Chinese.
+# v1.1, 20230302, remove mental subscale.
 
-# Template version
 # Modified by haipeng.wang@gmail.com
-# v1.4, 20230228, remove the sharp number symbol from the header.
-# v1.3.1, 20230228, marginally tiny improvement, add a head note.
-# v1.3, 20230216, minor improvement, remove the experiment variable.
 # v1.2, 20221211, minor improvement.
 # v1.1, 20221211, added block, check file exists or not, added button of exit.
 # v1.0, 20221210
@@ -19,7 +16,7 @@ import os
 from appJar import gui
 
 ## data file.
-fname = "nasa-rawtlx-results-ccl.txt"
+fname = "nasa-rawtlx-results-g2g-III.txt"
 
 
 ## Texts for the individual questionnaire items
@@ -30,26 +27,39 @@ fname = "nasa-rawtlx-results-ccl.txt"
          # "Effort    -    How hard did you have to work to accomplish your level of performance?",
          #"Frustration    -    How insecure, discouraged, irritated, stressed and annoyed were you?"]
 
-texts = ["脑力需求    -    How mentally demanding was the task?",
-         # "体力需求    -    How physically demanding was the task?",
-         # "时限需求    -    How hurried or rushed was the pace of the task?",
-         # "自我表现    -    How successful were you in accomplishing what you were asked to do?",
-         "努力程度    -    How hard did you have to work to accomplish your level of performance?",
-         "受挫感    -    How insecure, discouraged, irritated, stressed and annoyed were you?"]
+#texts = [# "脑力需求    -    How mentally demanding was the task?",
+         #"体力需求    -    How physically demanding was the task?",
+         #"时限需求    -    How hurried or rushed was the pace of the task?",
+         #"自我表现    -    How successful were you in accomplishing what you were asked to do?",
+         #"努力程度    -    How hard did you have to work to accomplish your level of performance?",
+         #"受挫感    -    How insecure, discouraged, irritated, stressed and annoyed were you?"]
+
+texts = [#"脑力需求    -    完成任务的脑力需求(例如：思考、决定、记忆、观察和搜索等)",
+         "体力需求    -    完成任务的体力需求(例如：拖拽、旋转、控制等)",
+         "时限需求    -    完成任务的速率或节奏，即时间紧迫感",
+         "自我表现    -    对完成任务中自我表现的满意程度，对任务完成水平的自我评价",
+         "努力程度    -    完成任务所付出的努力",
+         "受挫感    -    完成任务中感到的沮丧、烦躁、压力大和愤怒等"]
+
 
 ## Labels on the left and right sides of the scale
-left_labels = ["Very Low", "Very Low", "Very Low", "Perfect", "Very Low", "Very Low"]
-right_labels = ["Very High", "Very High", "Very High", "Failure", "Very High", "Very High"]
+#left_labels = ["Very Low", "Very Low", "Very Low", "Perfect", "Very Low", "Very Low"]
+#right_labels = ["Very High", "Very High", "Very High", "Failure", "Very High", "Very High"]
+left_labels = ["非常低", "非常低", "完美", "非常低", "非常低"]
+right_labels = ["非常高", "非常高", "失败", "非常高", "非常高"]
+
+
+
 
 ## Labels of the Conditions to be chosen from
-conditions = ["Cross-Language", "Auto"]
+# conditions = ["pop", "pull", "auto"]
+conditions = ["cross-device", "large-display"]
 
 ## Experiments to be chosen from
 # experiments = ["Experiment 1", "Experiment 2"]
 # experiments = ["2"]
 
 # block number
-# blocks = ["0", "1", "2", "3"]
 blocks = ["0", "3"]
 
 
@@ -57,7 +67,7 @@ blocks = ["0", "3"]
 def on_submit():
     if not os.path.exists(fname):
         # define header of log file.
-        header = 'uid ' + 'condition ' + 'block ' + 'mental ' + 'effort ' + 'frustration'
+        header = '# ' + 'uid ' + 'condition ' + 'block ' + 'physical ' + 'temporal ' + 'performance ' + 'effort ' + 'frustration'
         file_handle = open(fname, "a")
         file_handle.write(header + '\n')
         file_handle.close()        

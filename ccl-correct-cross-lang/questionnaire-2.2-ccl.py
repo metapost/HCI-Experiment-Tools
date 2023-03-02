@@ -1,4 +1,5 @@
 # App version
+# v1.1, 20230228, added a condition of fixedmenu.
 # v1.0, 20230228
 
 # Template version
@@ -52,6 +53,7 @@ app.addLabelSpinBoxRange("User ID", 1, 100, row=0, column=0)
 app.addLabel("Which of the methods was preferred: ", row=app.getRow(), column=0)
 app.addRadioButton("preferred", "Automatic", row="previous", column=1)
 app.addRadioButton("preferred", "Cross Language", row="previous", column=2)
+app.addRadioButton("preferred", "Fixed Menu", row="previous", column=3)
 
 app.setSticky("we")
 app.addButton("Exit", func=on_exit, row=app.getRow(), column=0)

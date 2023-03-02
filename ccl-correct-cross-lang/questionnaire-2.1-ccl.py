@@ -1,4 +1,9 @@
+# App version
+# v0.2, 20230228, added a condition of fixedmenu.
+# v0.1, 20230228
+
 # Created by haipeng.wang@gmail.com
+# Template version
 # v1.2, 20230222, added two scales and changed them to 7-Likert scales.
 # v1.1, 20230221, added conditions.
 # v1.0, 20221211
@@ -33,7 +38,7 @@ right_labels = ["非常容易", "非常容易", "非常准确", "非常快", "�
 
 
 ## Labels of the Conditions to be chosen from
-conditions = ["Automatic", "Cross Language"]
+conditions = ["Automatic", "CrossLanguage", "FixedMenu"]
 
 
 ## Experiments to be chosen from

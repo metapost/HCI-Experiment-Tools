@@ -1,4 +1,5 @@
 # app version
+# v1.1, 20230302. fixed bug of conditions.
 # v1.0, 20230218.
 #
 # Created by haipeng.wang@gmail.com
@@ -19,7 +20,11 @@ fname = "questionnaire-g2g-studyIII-2.1.txt"
 
 texts = ["Ease of use individually(个人使用的易用性)",
          "Ease of collaboration with others(多人协作的易用性)",
-         "Privacy concerns(隐私性)"]
+         "Perceived accuracy(感受到的准确度)",
+         "Perceived speed(感受到的速度)",
+         "Privacy concerns(隐私保护程度)"]
+
+
 
 ## an unbiased question example.
 # How easy or difficult was it for you to...? [Very difficult, Difficult, Neutral, Easy, Very easy]
@@ -27,13 +32,13 @@ texts = ["Ease of use individually(个人使用的易用性)",
 ## Labels on the left and right sides of the scale
 # left_labels = ["Very Low", "Very Low", "Strongly Disagree", "Very Unlikely", "Perfect"]
 # right_labels = ["Very High", "Very High", "Strongly Agree", "Very Likely", "Failure"]
-left_labels = ["困难", "困难", "Very Bad"]
-right_labels = ["容易", "容易", "Very Good"]
+left_labels = ["非常困难", "非常困难", "非常不准确", "非常慢", "很低"]
+right_labels = ["非常容易", "非常容易", "非常准确", "非常快", "很高"]
 
 
 ## Labels of the Conditions to be chosen from
 # conditions = ["pop", "pull", "auto"]
-conditions = ["seated-table-hori", "seated-table-vert", "seated-hold-vert", "standing-hold-vert", "walking-hold-vert"]
+conditions = ["cross-device", "large-display"]
 
 ## Experiments to be chosen from
 # experiments = ["Experiment 1", "Experiment 2"]
@@ -48,7 +53,7 @@ def on_submit():
     if not os.path.exists(fname):
         # define header of log file.
         # header = '# ' + 'uid ' + 'condition ' + 'block ' + 'ease-of-use ' + 'ease-of-collaboration ' + 'ease-of-access ' + 'privacy-concerns'
-        header = '# ' + 'uid ' + 'condition ' + 'ease-of-use ' + 'ease-of-collaboration ' + 'privacy-concerns'
+        header = '# ' + 'uid ' + 'condition ' + 'ease-of-use ' + 'ease-of-collaboration ' + 'percevied-accuracy ' + 'percevied-speed ' + 'privacy'         
         file_handle = open(fname, "a")
         file_handle.write(header + '\n')
         file_handle.close()        

@@ -1,4 +1,5 @@
 # Created by haipeng.wang@gmail.com
+# v4.10, 20230302, added reminder about how do interview and debrief.
 # v4.0, 20230221, added a tab of appendix.
 # v3.2, 20230221, added "please describe or label the technique?" and "Anything else want to say?" in post-experiment.
 # v3.1, 20230218, added a new tab about post-study check.
@@ -21,9 +22,6 @@ experiments = ["1", "2", "3"]
 
 ## Labels of the Conditions to be chosen from
 conditions = ["pop", "pull", "auto"]
-
-# block number
-blocks = ["0", "1", "2", "3"]
 
 def on_exit():
     app.stop()
@@ -55,12 +53,9 @@ app.setFont(size=16, weight="bold")
 app.addLabelOptionBox("Experiment", experiments, 0, 0)
 app.addLabelSpinBoxRange("User ID", 1, 100, 0, 1)
 
-app.addLabelOptionBox("Condition", conditions, 0, 2)
-app.setOptionBoxChangeFunction("Condition", conditionChanged)
-app.setStartFunction(conditionChanged)
-
-app.addLabelOptionBox("Block", blocks, 0, 3)
-
+# app.addLabelOptionBox("Condition", conditions, 0, 2)
+# app.setOptionBoxChangeFunction("Condition", conditionChanged)
+# app.setStartFunction(conditionChanged)
 
 app.startTabbedFrame("TabbedFrame", colspan=4)
 app.setSticky("w")
@@ -85,13 +80,18 @@ app.addCheckBox("Video/Audio recording only for research; \n Your privacy is our
 app.addCheckBox("Demographic")
 app.addCheckBox("Instruction: play video.")
 app.addCheckBox("Answer questions", row="previous", column=1)
-app.addCheckBox("Practice: techniques trials + TLX & Survey")
+app.addCheckBox("Practice: Task + TLX & Survey (confirm TLX scores with users)")
 app.addNamedCheckBox(name="Answer questions", title="Answer practice questions", row="previous", column=1)
 app.addNamedCheckBox(name="Break", title="Break after practice")
 app.stopTab()
 
 ## Main-experiment
 app.startTab("2. Main-Experiment")
+app.addLabelOptionBox("Condition", conditions, column=2)
+app.setOptionBoxChangeFunction("Condition", conditionChanged)
+# app.setStartFunction(conditionChanged)
+
+
 app.addCheckBox("Turn on video recorders.")
 app.addCheckBox("to proceed as quickly and accurately as possible but at a pace that is comfortable.", colspan=4)
 app.addCheckBox("Think Aloud (optional)")
@@ -124,10 +124,11 @@ app.addCheckBox("Turn on audio recorders.")
 app.addCheckBox("Interview:")
 app.addCheckBox("closed questions.", row="previous", column=1)
 app.addCheckBox("Please describe or label the technique?", row="previous", column=2)
-app.addCheckBox("open questions.", column=1)
+app.addLabel("conversation, not just ask Q and get Answer.")
+app.addCheckBox("open questions.", row="previous", column=1)
 app.addCheckBox("What features you like or dislike? and Why?", row="previous", column=2)
 app.addCheckBox("repeat and confirm.", column=1, colspan=2) # repeat your understanding and confirm with users.
-app.addCheckBox("Debrief")
+app.addCheckBox("Debrief (Purpose and Benefits)")
 app.addCheckBox("Anything else want to say?", row="previous", column=1)
 app.addNamedCheckBox(name="Answer questions", title="Answer Debrief", row="previous", column=2)
 app.addCheckBox("Maintain participants pool.")
