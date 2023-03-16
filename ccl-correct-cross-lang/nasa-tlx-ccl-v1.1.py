@@ -4,6 +4,7 @@
 
 # Template version
 # Modified by haipeng.wang@gmail.com
+# v2.0, 20230316, added logic control, all scales will be disabled after click submit, set block will enable scales.
 # v1.4, 20230228, remove the sharp number symbol from the header.
 # v1.3.1, 20230228, marginally tiny improvement, add a head note.
 # v1.3, 20230216, minor improvement, remove the experiment variable.
@@ -53,7 +54,7 @@ right_labels = ["非常高", "非常高", "失败", "非常高", "非常高"]
 
 
 ## Labels of the Conditions to be chosen from
-conditions = ["Cross-Language", "Auto", "FixedMenu"]
+conditions = ["?", "Cross-Language", "Auto", "FixedMenu"]
 
 ## Experiments to be chosen from
 # experiments = ["Experiment 1", "Experiment 2"]
@@ -61,8 +62,12 @@ conditions = ["Cross-Language", "Auto", "FixedMenu"]
 
 # block number
 # blocks = ["0", "1", "2", "3"]
-blocks = ["0", "3"]
+blocks = ["?", "0", "3"] # "-" is default value, and it let user must choose a number before go ahead.
 
+# init config for app
+def init_app():
+    for scale in app.getAllScales():
+        app.disableScale(scale) # disable all scales, let user set block number firstly.
 
 ## Called when the submit button is clicked
 def on_submit():
@@ -92,9 +97,20 @@ def on_submit():
     
     app.infoBox("RawTLX Input", "Input successfully.")
     print("The results were written successfully.")
+        
+    # reset block to - (NA)
+    app.setOptionBox('Block', '?')
+
+    # disabled all scales
+    for scale in app.getAllScales():
+        app.disableScale(scale)
 
 def on_exit():
     app.stop()
+
+def on_block_change(option):
+        for scale in app.getAllScales():
+            app.enableScale(scale)
 
 
 ## Main entry point
@@ -107,6 +123,7 @@ app.setFont(size=16, weight="bold")
 app.addLabelSpinBoxRange("User ID", 1, 100, 0, 0)
 app.addLabelOptionBox("Condition", conditions, 0, 1)
 app.addLabelOptionBox("Block", blocks, 0, 2)
+app.setOptionBoxChangeFunction("Block", on_block_change)
 app.addHorizontalSeparator(2, 0, 4)
 
 for i, entry in enumerate(texts):
@@ -132,6 +149,7 @@ for i, entry in enumerate(texts):
 app.setSticky("we")
 app.addButton("Submit", on_submit, 4*len(texts) + 1 + 3, 1)
 app.addButton("Exit", on_exit, 4*len(texts) + 1 + 3, 3)
+app.setStartFunction(init_app)
 
 app.go()
 
