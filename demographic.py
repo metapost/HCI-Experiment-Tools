@@ -3,6 +3,7 @@
 
 # Created by haipeng.wang@gmail.com
 # template version
+# v1.3, 20230309, change the UID to PID.
 # v1.2, 20230228, remove the separator below uid widget.
 # v1.1, 20230215, remove experiment and condition variables.
 # v1.0, 20221212, full functions finshed.
@@ -28,17 +29,17 @@ fname = "demographic.txt"
 def on_submit():
     if not os.path.exists(fname):
         # define header of log file.
-        header = 'uid ' + 'gender ' + 'age ' + 'sight ' + 'handedness ' + 'experience-display ' + 'experience-gesture ' + 'experience-silentSpeech'
+        header = 'pid ' + 'gender ' + 'age ' + 'sight ' + 'handedness ' + 'experience-display ' + 'experience-gesture ' + 'experience-silentSpeech'
         file_handle = open(fname, "a")
         file_handle.write(header + '\n')
         file_handle.close()        
         
-    user_id = app.getSpinBox("User ID")
+    pid = app.getSpinBox("PID")
         
     file_handle = open(fname, "a")
 
     write_string = ''
-    write_string += str(user_id) + ' '
+    write_string += str(pid) + ' '
     write_string += app.getRadioButton("gender") + ' '
     write_string += str(int(app.getEntry("age"))) + ' '
     write_string += app.getRadioButton("sight") + ' '
@@ -64,7 +65,7 @@ app.setSize(1100, 700)
 app.setFont(size=16, weight="bold")
 
 app.setSticky("we")
-app.addLabelSpinBoxRange("User ID", 1, 100, 0, 0)
+app.addLabelSpinBoxRange("PID", 1, 100, 0, 0)
 
 ## Basic info of participants
 app.startLabelFrame("Basic Info", colspan=6)

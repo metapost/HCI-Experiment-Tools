@@ -3,6 +3,8 @@
 
 # Template version
 # Modified by haipeng.wang@gmail.com
+# v2.2, 20230312, added a practice block id as "P".
+# v2.1, 20230309, change the UID to PID.
 # v2.0, 20230302, all subscales in Chinese.
 # v1.4.1, 20230228, fix a minor bug in top separator, extend it to 4 columns.
 # v1.4, 20230228, remove the sharp number symbol from the header.
@@ -63,26 +65,27 @@ conditions = ["pop", "pull", "auto"]
 
 # block number
 # blocks = ["0", "1", "2", "3"]
-blocks = ["0", "3"]
+# "P" is practice block, "0" is practice block too.
+blocks = ["P", "0", "3"]
 
 
 ## Called when the submit button is clicked
 def on_submit():
     if not os.path.exists(fname):
         # define header of log file.
-        header = 'uid ' + 'condition ' + 'block ' + 'mental ' + 'physical ' + 'frustration'
+        header = 'pid ' + 'condition ' + 'block ' + 'mental ' + 'physical ' + 'frustration'
         file_handle = open(fname, "a")
         file_handle.write(header + '\n')
         file_handle.close()        
         
-    user_id = app.getSpinBox("User ID")
+    pid = app.getSpinBox("PID")
     condition = app.getOptionBox("Condition")
     block = app.getOptionBox("Block")
     
     file_handle = open(fname, "a")
 
     write_string = ''
-    write_string += str(user_id) + ' '
+    write_string += str(pid) + ' '
     write_string += str(condition) + ' '
     write_string += str(block)
 
@@ -106,7 +109,7 @@ app.setTitle("NASA-RawTLX")
 app.setSize(1000, 700)
 app.setFont(size=16, weight="bold")
 
-app.addLabelSpinBoxRange("User ID", 1, 100, 0, 0)
+app.addLabelSpinBoxRange("PID", 1, 100, 0, 0)
 app.addLabelOptionBox("Condition", conditions, 0, 1)
 app.addLabelOptionBox("Block", blocks, 0, 2)
 app.addHorizontalSeparator(2, 0, 4)

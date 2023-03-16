@@ -4,6 +4,7 @@
 
 # Created by haipeng.wang@gmail.com
 # Template version
+# v1.3, 20230309, change the UID to PID.
 # v1.2, 20230222, added two scales and changed them to 7-Likert scales.
 # v1.1, 20230221, added conditions.
 # v1.0, 20221211
@@ -53,18 +54,18 @@ conditions = ["Automatic", "CrossLanguage", "FixedMenu"]
 def on_submit():
     if not os.path.exists(fname):
         # define header of log file.
-        header = 'uid ' + 'condition ' + 'ease-of-use ' + 'ease-of-leaning ' + 'percevied-accuracy ' + 'percevied-speed'
+        header = 'pid ' + 'condition ' + 'ease-of-use ' + 'ease-of-leaning ' + 'percevied-accuracy ' + 'percevied-speed'
         file_handle = open(fname, "a")
         file_handle.write(header + '\n')
         file_handle.close()        
         
-    user_id = app.getSpinBox("User ID")
+    pid = app.getSpinBox("PID")
     condition = app.getOptionBox("Condition")
     
     file_handle = open(fname, "a")
 
     write_string = ''
-    write_string += str(user_id) + ' '
+    write_string += str(pid) + ' '
     write_string += str(condition)
 
     for i in range(len(texts)):
@@ -86,7 +87,7 @@ app.setTitle("Questionnaire")
 app.setSize(1000, 700)
 app.setFont(size=16, weight="bold")
 
-app.addLabelSpinBoxRange("User ID", 1, 100, 0, 0)
+app.addLabelSpinBoxRange("PID", 1, 100, 0, 0)
 app.addLabelOptionBox("Condition", conditions, 0, 1)
 app.addHorizontalSeparator(2, 0, 4)
 

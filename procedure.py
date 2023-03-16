@@ -1,5 +1,8 @@
 # Created by haipeng.wang@gmail.com
-# v4.10, 20230302, added reminder about how do interview and debrief.
+# v4.4, 20230316, added an attention tab following main-experiment tab.
+# v4.3, 20230309, change the UID to PID.
+# v4.2, 20230303, added UID arrangements and Latin square enforcement.
+# v4.1, 20230302, added reminder about how do interview and debrief.
 # v4.0, 20230221, added a tab of appendix.
 # v3.2, 20230221, added "please describe or label the technique?" and "Anything else want to say?" in post-experiment.
 # v3.1, 20230218, added a new tab about post-study check.
@@ -77,6 +80,8 @@ app.addCheckBox("If you feel uncomfortable you can stop at any time during the s
 app.addCheckBox("This is a study of system; we are not studying you.")
 app.addCheckBox("Consent form.")
 app.addCheckBox("Video/Audio recording only for research; \n Your privacy is our priority.", row="previous", column=1)
+app.addCheckBox("PID arrangement")
+app.addCheckBox("enforce Latin Square", row="previous", column=1)
 app.addCheckBox("Demographic")
 app.addCheckBox("Instruction: play video.")
 app.addCheckBox("Answer questions", row="previous", column=1)
@@ -118,9 +123,21 @@ app.addNamedCheckBox(name="Break", title="break-3", row="previous", column=3)
 
 app.stopTab()
 
+# Attention to the main-experiment
+app.startTab("2.1 Attention")
+app.addLabel("During Practice and Block-0:")
+app.addCheckBox("Observe and give full guides to participants.")
+app.addCheckBox("Keep eyes on participants.")
+app.addLabel("During B1-B3:")
+app.addCheckBox("No special emergent requests from users, no any saying, help from investigators.")
+app.addCheckBox("Don't introduce systematic biases from investigators.")
+app.stopTab()
+
 ## Post-experiment
 app.startTab("3. Post-Experiment")
+app.addCheckBox("User break.")
 app.addCheckBox("Turn on audio recorders.")
+app.addCheckBox("review survey to find questions for interview.", row="previous", column=1)
 app.addCheckBox("Interview:")
 app.addCheckBox("closed questions.", row="previous", column=1)
 app.addCheckBox("Please describe or label the technique?", row="previous", column=2)
