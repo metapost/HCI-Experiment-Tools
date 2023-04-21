@@ -1,4 +1,5 @@
 # Created by haipeng.wang@gmail.com
+# v4.5, 20230319, added enfored breaks between blocks to reduce the effect of fatigue.
 # v4.4, 20230316, added an attention tab following main-experiment tab.
 # v4.3, 20230309, change the UID to PID.
 # v4.2, 20230303, added UID arrangements and Latin square enforcement.
@@ -104,12 +105,12 @@ app.addCheckBox("Think Aloud (optional)")
 app.addCheckBox("Block-0", column=0)
 app.addNamedCheckBox(name="Trials \u00D7 2", title="trial-0", row="previous", column=1)
 app.addNamedCheckBox(name="TLX + Q", title="survey-0", row="previous", column=2)
-app.addNamedCheckBox(name="Break", title="break-0", row="previous", column=3)
+app.addNamedCheckBox(name="Break(must)", title="break-0", row="previous", column=3)
 
 app.addCheckBox("Block-1", column=0)
 app.addNamedCheckBox(name="Trials \u00D7 3", title="trial-1", row="previous", column=1)
 app.addNamedCheckBox(name="TLX + Q", title="survey-1", row="previous", column=2)
-app.addNamedCheckBox(name="Break", title="break-1", row="previous", column=3)
+app.addNamedCheckBox(name="Break(must)", title="break-1", row="previous", column=3)
 
 app.addCheckBox("Block-2", column=0)
 app.addNamedCheckBox(name="Trials \u00D7 3", title="trial-2", row="previous", column=1)
@@ -119,7 +120,9 @@ app.addNamedCheckBox(name="Break(must)", title="break-2", row="previous", column
 app.addCheckBox("Block-3", column=0)
 app.addNamedCheckBox(name="Trials \u00D7 3", title="trial-3", row="previous", column=1)
 app.addNamedCheckBox(name="TLX + Q", title="survey-3", row="previous", column=2)
-app.addNamedCheckBox(name="Break", title="break-3", row="previous", column=3)
+app.addNamedCheckBox(name="Break(must)", title="break-3", row="previous", column=3)
+
+app.addLabel("Enforce break between blocks to reduce effects of fatigue.", colspan=2)
 
 app.stopTab()
 
@@ -137,10 +140,10 @@ app.stopTab()
 app.startTab("3. Post-Experiment")
 app.addCheckBox("User break.")
 app.addCheckBox("Turn on audio recorders.")
-app.addCheckBox("review survey to find questions for interview.", row="previous", column=1)
+app.addCheckBox("review survey to find questions for interview.", row="previous", column=1, colspan=2)
 app.addCheckBox("Interview:")
 app.addCheckBox("closed questions.", row="previous", column=1)
-app.addCheckBox("Please describe or label the technique?", row="previous", column=2)
+app.addCheckBox("How would you describe or label the technique?", row="previous", column=2)
 app.addLabel("conversation, not just ask Q and get Answer.")
 app.addCheckBox("open questions.", row="previous", column=1)
 app.addCheckBox("What features you like or dislike? and Why?", row="previous", column=2)

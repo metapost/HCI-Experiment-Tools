@@ -1,6 +1,5 @@
 # App version
-# v0.2, 20230228, added a condition of fixedmenu.
-# v0.1, 20230228
+# v1.0, 20230421
 
 # Created by haipeng.wang@gmail.com
 # Template version
@@ -16,7 +15,7 @@ import os
 from appJar import gui
 
 ## data file.
-fname = "questionnaire-2.1-ccl.txt"
+fname = "questionnaire-g2g-cdgain.txt"
 
 ## Texts for the individual questionnaire items
 # texts = ["易用性的程度",
@@ -45,7 +44,7 @@ right_labels = ["非常容易", "非常容易", "非常愿意", "非常准确", 
 
 
 ## Labels of the Conditions to be chosen from
-conditions = ["Automatic", "CrossLanguage", "FixedMenu"]
+conditions = ["Constant", "Linear", "Nonlinear"]
 
 
 ## Experiments to be chosen from
@@ -123,5 +122,3 @@ app.addButton("Submit", on_submit, 4*len(texts) + 1 + 3, 1)
 app.addButton("Exit", on_exit, 4*len(texts) + 1 + 3, 3)
 
 app.go()
-
-
