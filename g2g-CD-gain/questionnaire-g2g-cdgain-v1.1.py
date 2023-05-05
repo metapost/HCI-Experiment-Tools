@@ -1,8 +1,10 @@
 # App version
+# v1.1, 20230424, reset all scales to default values as condition box changed values.
 # v1.0, 20230421
 
 # Created by haipeng.wang@gmail.com
 # Template version
+# v2.1, 20230424, reset all scales to default values as optionalbox of conditon changed values.
 # v2.0, 20230319, added WTU, willingness-to-use is a measure of a user's attitude toward using a technique.
 # v1.3, 20230309, change the UID to PID.
 # v1.2, 20230222, added two scales and changed them to 7-Likert scales.
@@ -54,6 +56,13 @@ conditions = ["Constant", "Linear", "Nonlinear"]
 # block number
 # blocks = ["0", "1", "2", "3"]
 
+## call as condition optional box changed
+## each time changed condition, reset all scales to default values.
+def conditionChanged():
+    for i, entry in enumerate(texts):
+        # app.setScaleRange("q" + str(i), 1, 5, 4) # 7 scale range, 4 is default value.
+        app.setScaleRange("q" + str(i), 1, 5, 3) # 5 scale range, 3 is default value.    
+
 
 ## Called when the submit button is clicked
 def on_submit():
@@ -94,6 +103,7 @@ app.setFont(size=16, weight="bold")
 
 app.addLabelSpinBoxRange("PID", 1, 100, 0, 0)
 app.addLabelOptionBox("Condition", conditions, 0, 1)
+app.setOptionBoxChangeFunction("Condition", conditionChanged)
 app.addHorizontalSeparator(2, 0, 4)
 
 for i, entry in enumerate(texts):
