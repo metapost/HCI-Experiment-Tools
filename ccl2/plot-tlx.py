@@ -1,5 +1,6 @@
 # Template version
 # Modified by haipeng.wang@gmail.com
+# notice: 20230508, All code in this file already move to nasa-tlx-ccl2.py file.
 # v1.1, 20230508, add block id, only select rows with block == bid.
 # v1.0, 20230506, initial release.
 
