@@ -3,6 +3,7 @@
 
 # Template version
 # Modified by haipeng.wang@gmail.com
+# v3.0, 20230508, add a major function to plot current data for current pid, this helps finding interesting things for following interview.
 # v2.1, 20230505, changed uid to pid.
 # v2.0, 20230316, added logic control, all scales will be disabled after click submit, set block will enable scales.
 # v1.4, 20230228, remove the sharp number symbol from the header.
@@ -18,6 +19,7 @@
 
 ## install: pip3 install appjar
 import os
+import matplotlib.pyplot as plt
 from appJar import gui
 
 ## data file.
@@ -113,6 +115,80 @@ def on_block_change(option):
             app.enableScale(scale)
 
 
+# Define a function to show the plot
+def show_plot(tab):
+    # data convert
+    import csv
+
+    fn = 'nasa-rawtlx-results-ccl-v2'
+
+    # Open the input file for reading
+    with open(fn+ '.txt', 'r') as input_file:
+        # Read the contents of the file and split each line by commas
+        lines = [line.strip().split(' ') for line in input_file.readlines()]
+
+    # Open the output file for writing as a CSV file
+    with open(fn + '.csv', 'w', newline='') as output_file:
+        # Create a CSV writer object and write the data to the file
+        writer = csv.writer(output_file)
+        writer.writerows(lines)
+
+    # print('Data written to .csv file')
+
+
+    # plot
+    import pandas as pd
+    import numpy as np
+
+    df = pd.read_csv(fn + '.csv')
+    # print(df)
+
+    # define the pid to select rows
+    # define block id to select rows
+    # define the dv to select columns
+    pid = int(app.getSpinBox("User ID"))
+    bid = 3 # only need rows with block id==3
+    dv = ['mental', 'performance', 'effort', 'frustration']
+
+    # Select specific rows of pid and block id
+    df = df.loc[df['pid'] == pid]
+    df = df.loc[df['block'] == bid]
+    # print(df)
+
+    # Select specific columns by name
+    columns_to_select = ['condition', 'mental', 'performance', 'effort', 'frustration']
+    df = df[columns_to_select]
+    # print(df)
+
+
+    # Create the bar chart
+    num_dv = len(dv)
+    num_condition = len(df['condition'])
+
+    fig, ax = plt.subplots()
+    width = 0.8 / num_dv # number of dv
+
+    for i, var in enumerate(dv):
+        x = np.arange(num_condition) + i * width # 2 conditions
+        ax.bar(x, df[var], width=width, label=var)
+
+    # Set axis labels and title
+    # ax.set_xlabel('Conditions')
+    # ax.set_ylabel('Scale')
+    ax.set_title('User' + str(pid) + ': Raw TLX')
+
+    # Set the x-tick labels
+    ax.set_xticks(np.arange(num_condition) + 0.4) # set the number of conditions
+    # ax.set_xticklabels(['Condition 1', 'Condition 2'])
+    ax.set_xticklabels(df['condition'])
+
+    # Add a legend
+    ax.legend()
+
+    # Show the plot
+    plt.show()
+
+
 ## Main entry point
 app = gui()
 # app.showSplash("NASA RawTLX", fill='red', stripe='black', fg='white', font=44)
@@ -147,6 +223,7 @@ for i, entry in enumerate(texts):
     app.addHorizontalSeparator(4*i + 3 + 3, 0, 4)
 
 app.setSticky("we")
+app.addButton("Plot", show_plot, 4*len(texts) + 1 + 3, 0)
 app.addButton("Submit", on_submit, 4*len(texts) + 1 + 3, 1)
 app.addButton("Exit", on_exit, 4*len(texts) + 1 + 3, 3)
 app.setStartFunction(init_app)
