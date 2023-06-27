@@ -1,8 +1,9 @@
 # App version
-# v1.0, Jun 25, 2023
+# v1.0, MM DD, YYYY
 
 # Template version
 # Modified by haipeng.wang@gmail.com
+# v3.1.1, 20230627, reset block number to 0 and 3, and discarded number 1 and 2.
 # v3.1, 20230625, add all labels of six subscales to the header.
 # v3.0, 20230508, add a major function to plot current data for current pid, this helps finding interesting things for following interview.
 # v2.1, 20230505, changed uid to pid.
@@ -14,7 +15,11 @@
 # v1.1, 20221211, added block, check file exists or not, added button of exit.
 # v1.0, 20221210
 
+
+## only collect tlx after block3. tlx after block0 is a practice.
+
 # You MUST customize the "header" info before using the scale.
+# You MUST need to set manually the block number which will be plot.
 
 #!/usr/bin/python3
 
@@ -57,15 +62,10 @@ right_labels = ["非常高", "非常高", "非常高", "失败", "非常高", "�
 
 
 ## Labels of the Conditions to be chosen from
-conditions = ["?", "vis.con-imu.1st", "vis.nonlin-imu.1st", "vis.con-imu.2nd", "vis.nonlin-imu.2nd"]
+conditions = ["?", "C1", "C2"] # Condition template, reserve the "?".
 
-## Experiments to be chosen from
-# experiments = ["Experiment 1", "Experiment 2"]
-# experiments = ["2"]
-
-# block number
-# blocks = ["0", "1", "2", "3"]
-blocks = ["?", "0", "1", "2", "3"] # "-" is default value, and it let user must choose a number before go ahead.
+# block number, only perform tlx after block3, practice tlx after block0, but data should be discarded.
+blocks = ["?", "0", "3"] # "-" is default value, and it let user must choose a number before go ahead.
 
 # init config for app
 def init_app():
@@ -161,7 +161,6 @@ def show_plot(tab):
     df = df[columns_to_select]
     # print(df)
 
-
     # Create the bar chart
     num_dv = len(dv)
     num_condition = len(df['condition'])
@@ -230,4 +229,3 @@ app.addButton("Exit", on_exit, 4*len(texts) + 1 + 3, 3)
 app.setStartFunction(init_app)
 
 app.go()
-

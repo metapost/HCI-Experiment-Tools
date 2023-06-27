@@ -1,5 +1,5 @@
 # App version
-# v1.0, MM DD, YYYY
+# v1.0, Jun 25, 2023
 
 # Template version
 # Modified by haipeng.wang@gmail.com
@@ -15,7 +15,6 @@
 # v1.0, 20221210
 
 # You MUST customize the "header" info before using the scale.
-# You MUST need to set manually the block number which will be plot.
 
 #!/usr/bin/python3
 
@@ -66,7 +65,7 @@ conditions = ["?", "vis.con-imu.1st", "vis.nonlin-imu.1st", "vis.con-imu.2nd", "
 
 # block number
 # blocks = ["0", "1", "2", "3"]
-blocks = ["?", "0", "1", "2", "3"] # "-" is default value, and it let user must choose a number before go ahead.
+blocks = ["?", "0", "3"] # "-" is default value, and it let user must choose a number before go ahead.
 
 # init config for app
 def init_app():
@@ -231,3 +230,4 @@ app.addButton("Exit", on_exit, 4*len(texts) + 1 + 3, 3)
 app.setStartFunction(init_app)
 
 app.go()
+
